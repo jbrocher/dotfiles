@@ -1,0 +1,11 @@
+[user]
+	email = jeanb.rocher@gmail.com
+	name = Jean-Baptiste Rocher
+[core]
+	excludesfile = /home/jb/.gitignore
+	editor = nvim
+[alias]
+  cm = commit -m 
+  lg = log --graph --pretty=oneline
+  st = status
+  co = checkout
