@@ -30,6 +30,7 @@ au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 
 " Colorscheme
 
+set termguicolors
 colorscheme nord
 "FZF
 let g:fzf_colors =
