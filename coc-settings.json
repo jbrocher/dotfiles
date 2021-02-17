@@ -5,6 +5,10 @@
     "markdown",
     "javascript",
     "typescript",
-    "typescriptreact"
-  ]
+    "typescriptreact",
+    "python"
+  ],
+  "python.linting.flake8Enabled": true,
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": ["-l 79"]
 }

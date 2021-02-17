@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
 " coc for tslinting, auto complete and prettier
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " coc extensions
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier']
+let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-pyright']
 Plug 'dikiaap/minimalist'
 Plug 'pangloss/vim-javascript'    " JavaScript support
 Plug 'leafgarland/typescript-vim' " TypeScript syntax
@@ -71,6 +71,9 @@ set noeb vb t_vb=
 :set nohlsearch 
 :set smartcase
 :set ignorecase
+
+" Exit terminal mode with ESC
+:tnoremap <Esc> <C-\><C-n>
 
 "==COC MAPPING================================
 
