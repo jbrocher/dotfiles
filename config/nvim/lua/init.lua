@@ -32,12 +32,15 @@ require('packer').startup(function()
   -- Additional textobjects for treesitter
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  -- Formatter
+  use 'mhartington/formatter.nvim'
   use 'hrsh7th/nvim-compe' -- Autocompletion plugin
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin
   -- Theme
   use 'arcticicestudio/nord-vim'
 end)
 
+-- Title 
+vim.o.title = true
 --Incremental live completion
 vim.o.inccommand = 'nosplit'
 
@@ -82,7 +85,7 @@ vim.cmd [[colorscheme nord]]
 --Set statusbar
 vim.g.lightline = {
   colorscheme = 'nord',
-  active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
+  active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'absolutepath', 'modified' } } },
   component_function = { gitbranch = 'fugitive#head' },
 }
 
@@ -114,7 +117,7 @@ require('gitsigns').setup {
 }
 
 -- Telescope
---[[require('telescope').setup {
+require('telescope').setup {
   defaults = {
     mappings = {
       i = {
@@ -123,7 +126,41 @@ require('gitsigns').setup {
       },
     },
   },
-}]]--
+}
+
+local prettier = function()
+  return {
+    exe = "prettier",
+    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+    stdin = true
+  }
+end
+
+-- Formatter
+require('formatter').setup({
+  logging = false,
+  filetype = {
+    typescript = {
+      prettier
+    },
+    javascript = {
+      prettier
+    },
+    typescriptreact = {
+      prettier
+    },
+    javascriptreact = {
+      prettier
+    },
+  }
+})
+
+vim.api.nvim_exec([[
+augroup FormatAutogroup
+  autocmd!
+  autocmd BufWritePost *.js,*.ts,*.tsx,*.jsx FormatWrite
+augroup END
+]], true)
 
 --Add leader shortcuts
 vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
@@ -298,6 +335,13 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
+-- Disable highlight error
+vim.api.nvim_exec(
+  [[
+    autocmd ColorScheme nord highlight! link TSError Normal
+  ]],
+  false
+)
 -- Treesitter based fold
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
@@ -311,7 +355,6 @@ require('compe').setup {
   source = {
     path = true,
     nvim_lsp = true,
-    luasnip = true,
     buffer = false,
     calc = false,
     nvim_lua = false,
@@ -320,7 +363,7 @@ require('compe').setup {
   },
 }
 
--- Utility functions for compe and luasnip
+-- Utility functions for compe 
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -337,13 +380,10 @@ end
 -- Use (s-)tab to:
 --- move to prev/next item in completion menuone
 --- jump to prev/next snippet's placeholder
-local luasnip = require 'luasnip'
 
 _G.tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t '<C-n>'
-  elseif luasnip.expand_or_jumpable() then
-    return t '<Plug>luasnip-expand-or-jump'
   elseif check_back_space() then
     return t '<Tab>'
   else
@@ -354,8 +394,6 @@ end
 _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t '<C-p>'
-  elseif luasnip.jumpable(-1) then
-    return t '<Plug>luasnip-jump-prev'
   else
     return t '<S-Tab>'
   end
@@ -401,5 +439,10 @@ vim.api.nvim_set_keymap('v', 'è', '`', {})
 vim.api.nvim_set_keymap('o', "'", '{', {})
 vim.api.nvim_set_keymap('n', "'", '{', {})
 vim.api.nvim_set_keymap('v', "'", '{', {})
+
+
+vim.api.nvim_set_keymap('o', "é", '~', {})
+vim.api.nvim_set_keymap('n', "é", '~', {})
+vim.api.nvim_set_keymap('v', "é", '~', {})
 
 vim.api.nvim_set_keymap('i', "jj", '<Esc>', {})
