@@ -152,13 +152,30 @@ require('formatter').setup({
     javascriptreact = {
       prettier
     },
+    python = {
+      -- black
+      function()
+        return {
+          exe = "black",
+          args = {"-"},
+          stdin = true
+        }
+      end,
+      function()
+        return {
+          exe = "reorder-python-imports",
+          args = {"-", "--exit-zero-even-if-changed"},
+          stdin = true
+        }
+      end
+    }
   }
 })
 
 vim.api.nvim_exec([[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.ts,*.tsx,*.jsx FormatWrite
+  autocmd BufWritePost *.js,*.ts,*.tsx,*.jsx,*.py FormatWrite
 augroup END
 ]], true)
 
