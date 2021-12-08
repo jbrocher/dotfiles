@@ -257,6 +257,7 @@ nvim_lsp.tsserver.setup {
 -- Setup diagnostic-languageserverlocal 
 filetypes = {
     typescript = "eslint",
+    javascript = "eslint",
     typescriptreact = "eslint",
 }
 
