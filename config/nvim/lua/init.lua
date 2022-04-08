@@ -131,7 +131,7 @@ require('telescope').setup {
 
 local prettier = function()
   return {
-    exe = "prettier",
+    exe = "./node_modules/.bin/prettier",
     args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
     stdin = true
   }
@@ -281,14 +281,6 @@ local linters = {
     }
 }
 
-local formatters = {
-    prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}}
-}
-
-local formatFiletypes = {
-    typescript = "prettier",
-    typescriptreact = "prettier"
-}
 
 nvim_lsp.diagnosticls.setup {
     on_attach = on_attach,
@@ -296,8 +288,8 @@ nvim_lsp.diagnosticls.setup {
     init_options = {
         filetypes = filetypes,
         linters = linters,
-        formatters = formatters,
-        formatFiletypes = formatFiletypes
+        formatters = {},
+        formatFiletypes = {}
     }
 }
 
