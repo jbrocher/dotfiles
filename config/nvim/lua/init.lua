@@ -485,10 +485,19 @@ vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {noremap = true})
 
 vim.api.nvim_set_keymap('n', ')', ']', {})
 vim.api.nvim_set_keymap('v', ')', ']', {})
+vim.api.nvim_set_keymap('o', ')', ']', {})
 
 vim.api.nvim_set_keymap('o', '(', '[', {})
 vim.api.nvim_set_keymap('n', '(', '[', {})
 vim.api.nvim_set_keymap('v', '(', '[', {})
+
+vim.api.nvim_set_keymap('n', '))', ']]', {})
+vim.api.nvim_set_keymap('v', '))', ']]', {})
+vim.api.nvim_set_keymap('o', '))', ']]', {})
+
+vim.api.nvim_set_keymap('o', '((', '[[', {})
+vim.api.nvim_set_keymap('n', '((', '[[', {})
+vim.api.nvim_set_keymap('v', '((', '[[', {})
 
 vim.api.nvim_set_keymap('o', '=', '}', {})
 vim.api.nvim_set_keymap('n', '=', '}', {})
