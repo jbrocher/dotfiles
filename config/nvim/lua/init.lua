@@ -298,7 +298,7 @@ local linters = {
     },
     eslint = {
         sourceName = "eslint",
-        command = "eslint",
+        command = "./node_modules/.bin/eslint",
         rootPatterns = {".eslintrc.js", "package.json"},
         debounce = 100,
         args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
