@@ -309,7 +309,7 @@ require('nvim-treesitter.configs').setup {
     },
   },
   indent = {
-    enable = false,
+    enable = false, -- Causes probmes with my python files if true
   },
   textobjects = {
     select = {
