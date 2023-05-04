@@ -37,7 +37,7 @@ require('packer').startup(function()
   use 'mhartington/formatter.nvim'
   use 'hrsh7th/nvim-compe' -- Autocompletion plugin
   -- Theme
-  use 'arcticicestudio/nord-vim'
+  use 'shaunsingh/nord.nvim'
 end)
 
 -- Title 
@@ -80,6 +80,12 @@ vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 --Set colorscheme (order is important here)
+vim.g.nord_contrast = true
+vim.g.nord_borders = false
+vim.g.nord_disable_background = false
+vim.g.nord_italic = false
+vim.g.nord_uniform_diff_background = true
+vim.g.nord_bold = false
 vim.o.termguicolors = true
 vim.cmd [[colorscheme nord]]
 
@@ -381,12 +387,13 @@ require('nvim-treesitter.configs').setup {
 }
 
 -- Disable highlight error
-vim.api.nvim_exec(
-  [[
-    autocmd ColorScheme nord highlight! link TSError Normal
-  ]],
-  false
-)
+--vim.api.nvim_exec(
+  -- [[
+  --   autocmd ColorScheme nord highlight! link TSError Normal
+  -- ]],
+  -- false
+-- )
+--
 -- Treesitter based fold
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
