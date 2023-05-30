@@ -240,7 +240,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Enable the following language servers
-local servers = { 'pyright', 'svelte'}
+local servers = { 'pyright', 'svelte', 'solidity'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -255,6 +255,9 @@ nvim_lsp.tsserver.setup {
         on_attach(client)
     end
 }
+
+-- Setup solidity
+
 
 -- Setup diagnostic-languageserverlocal 
 filetypes = {
