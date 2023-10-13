@@ -239,6 +239,9 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+-- Detect New files
+capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+
 -- Enable the following language servers
 local servers = { 'pyright', 'svelte', 'solidity'}
 for _, lsp in ipairs(servers) do
