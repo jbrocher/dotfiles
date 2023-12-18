@@ -168,6 +168,13 @@ require('formatter').setup({
           args = {"-", "--exit-zero-even-if-changed"},
           stdin = true
         }
+      end,
+      function()
+        return {
+          exe = "isort",
+          args = {"-"},
+          stdin = true
+        }
       end
     }
   }
