@@ -38,6 +38,8 @@ require('packer').startup(function()
   use 'hrsh7th/nvim-compe' -- Autocompletion plugin
   -- Theme
   use 'arcticicestudio/nord-vim'
+  -- Error navigation
+  use {'folke/trouble.nvim', requires = { "nvim-tree/nvim-web-devicons" }}
 end)
 
 -- Title 
@@ -116,6 +118,15 @@ require('gitsigns').setup {
     changedelete = { hl = 'GitGutterChange', text = '~' },
   },
 }
+
+-- Trouble
+-- Lua
+vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
+vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
+vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
+vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
+vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
+vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
 
 -- Telescope
 require('telescope').setup {
