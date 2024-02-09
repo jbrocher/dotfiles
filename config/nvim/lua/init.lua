@@ -258,6 +258,15 @@ local on_attach = function(_, bufnr)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
+vim.diagnostic.config({
+  virtual_text = {
+    source = "always",  -- Or "if_many"
+  },
+  float = {
+    source = "always",  -- Or "if_many"
+  },
+})
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
