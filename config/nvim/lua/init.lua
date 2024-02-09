@@ -419,13 +419,6 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
--- Disable highlight error
-vim.api.nvim_exec(
-  [[
-    autocmd ColorScheme nord highlight! link TSError Normal
-  ]],
-  false
-)
 -- Treesitter based fold
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
