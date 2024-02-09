@@ -165,6 +165,9 @@ require('formatter').setup({
     javascriptreact = {
       prettier
     },
+    json = {
+      prettier
+    },
     python = {
       -- black
       function()
@@ -195,7 +198,7 @@ require('formatter').setup({
 vim.api.nvim_exec([[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.ts,*.tsx,*.jsx,*.py FormatWrite
+  autocmd BufWritePost *.js,*.ts,*.tsx,*.jsx,*.py,*.json FormatWrite
 augroup END
 ]], true)
 
