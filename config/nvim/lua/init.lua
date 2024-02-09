@@ -422,7 +422,7 @@ require('nvim-treesitter.configs').setup {
 -- Treesitter based fold
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.o.foldlevel = 99
+vim.o.foldenable = false
 
 
 -- Compe setup
