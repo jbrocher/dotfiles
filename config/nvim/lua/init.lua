@@ -156,6 +156,9 @@ require('formatter').setup({
     typescript = {
       prettier
     },
+    css = {
+      prettier
+    },
     javascript = {
       prettier
     },
@@ -198,7 +201,7 @@ require('formatter').setup({
 vim.api.nvim_exec([[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.ts,*.tsx,*.jsx,*.py,*.json FormatWrite
+  autocmd BufWritePost *.js,*.ts,*.tsx,*.jsx,*.py,*.css,*json FormatWrite
 augroup END
 ]], true)
 
