@@ -6,7 +6,7 @@
 	editor = nvim
 [alias]
   cm = commit -m 
-  lg = log --graph --abbrev-commit --pretty=oneline --decorate --date=relative -10 --format=format:'%C(bold blue)%h%C(reset) %C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ar)%C(reset) %C(dim white)- %an%C(reset)'
+  lg = log --graph --abbrev-commit --pretty=oneline --decorate  --format=format:'%C(bold blue)%h%C(reset) %C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ar)%C(reset) %C(dim white)- %an%C(reset)'
   st = status
   co = checkout
   cleanup = git branch --merged | grep -E -v "(master|main)" | xargs git branch -d
