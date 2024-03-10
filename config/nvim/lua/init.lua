@@ -278,11 +278,11 @@ vim.diagnostic.config({
   },
 })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
+local local_capabilities = vim.lsp.protocol.make_client_capabilities()
 -- Detect New files
-capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+local_capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
 
 -- Enable the following language servers
 local servers = { 'pyright', 'svelte', 'solidity'}
